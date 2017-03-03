@@ -93,17 +93,6 @@ def write_book(header ,columns, data, grid_limit):
     pass
 
 
-def parse(ulist):
-    columns = ['Название', 'Цена', 'Ссылка']
-    rows = []
-    for pd in ulist:
-        rows.append(walk_url(pd))
-    write_book(columns, rows)
-    pass
-
-#parse(list_url)
-
-
 
 tb_linklist = tk.Text(mainw)
 tb_linklist.grid(row=0,column=0,sticky=tk.N+tk.W+tk.E+tk.S,columnspan=3)
@@ -181,17 +170,5 @@ b_process.grid(row=1,column=1,sticky=tk.W+tk.N)
 
 cb_includelink = tk.Checkbutton(mainw,text="Включать ссылки на страницу ЦБ",variable=put_url)
 cb_includelink.grid(row=1,column=2,sticky=tk.NW)
-
-
-
-
-
-
-
-
-# get_popular_near(popul_url)
-# print('\n\n')
-# write_book(get_all(list_url))
-
 
 mainw.mainloop()
