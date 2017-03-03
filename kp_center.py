@@ -1,5 +1,5 @@
-from xlwt import Workbook, XFStyle, Borders, easyxf
-from grab import Grab
+import xlwt
+import grab
 import re
 import tkinter as tk
 import os
@@ -42,7 +42,7 @@ def strip_dollarfor(str):
 
 
 def walk_url(url):
-    gr = Grab()
+    gr = grab.Grab()
     gr.go(url)
     cont = gr.doc.select(
         '//div[contains(@class,"container tb10")]//div[contains(@class,"wrapper")]//div[contains(@class,"container")]')
@@ -59,15 +59,15 @@ def walk_url(url):
 
 def alignwrite(sh,ix,iy,text,borders):
     if borders == True:
-        sh.write(ix, iy, text, style=easyxf('border: top medium, right medium, bottom medium, left medium;'))
+        sh.write(ix, iy, text, style=xlwt.easyxf('border: top medium, right medium, bottom medium, left medium;'))
     elif borders == False:
-        sh.write(ix, iy, text, style=easyxf('border: top no_line, right no_line, bottom no_line, left no_line;'))
+        sh.write(ix, iy, text, style=xlwt.easyxf('border: top no_line, right no_line, bottom no_line, left no_line;'))
     if len(text) * 256 > sh.col(iy).width:
         sh.col(iy).width = len(text) * 256
 
 
 def write_book(header ,columns, data, grid_limit):
-    book = Workbook(encoding="utf-8")
+    book = xlwt.Workbook(encoding="utf-8")
     sh = book.add_sheet('Список оборудования и услуг')
     alignwrite(sh, row_offset, column_offset, header, False)
 
